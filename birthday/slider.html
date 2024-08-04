@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        /* Your existing styles remain unchanged */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eaeaea;
+            overflow: hidden;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1000px;
+            height: 600px;
+            background: #f5f5f5;
+            box-shadow: 0 30px 50px #dbdbdb;
+        }
+
+        .container .slide .item {
+            width: 200px;
+            height: 300px;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            border-radius: 20px;
+            box-shadow: 0 30px 50px #505050;
+            background-position: 50% 50%;
+            background-size: cover;
+            display: inline-block;
+            transition: 0.5s;
+        }
+
+        .slide .item:nth-child(1),
+        .slide .item:nth-child(2) {
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);
+            border-radius: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide .item:nth-child(3) {
+            left: 50%;
+        }
+
+        .slide .item:nth-child(4) {
+            left: calc(50% + 220px);
+        }
+
+        .slide .item:nth-child(5) {
+            left: calc(50% + 440px);
+        }
+
+        /* here n = 0, 1, 2, 3,... */
+        .slide .item:nth-child(n + 6) {
+            left: calc(50% + 660px);
+            opacity: 0;
+        }
+
+        .item .content {
+            position: absolute;
+            top: 80%;
+            left: 100px;
+            width: 300px;
+            text-align: left;
+            color: #f6f6f8;
+            transform: translate(0, -50%);
+            font-family: system-ui;
+            display: none;
+        }
+
+        .slide .item:nth-child(2) .content {
+            display: block;
+        }
+
+        .content .name {
+            font-size: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            opacity: 0;
+            animation: animate 1s ease-in-out 1 forwards;
+        }
+
+        .content .des {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: animate 1s ease-in-out 0.3s 1 forwards;
+        }
+
+        .content button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            animation: animate 1s ease-in-out 0.6s 1 forwards;
+        }
+
+        @keyframes animate {
+            from {
+                opacity: 0;
+                transform: translate(0, 100px);
+                filter: blur(33px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0);
+                filter: blur(0);
+            }
+        }
+
+        .button {
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 5px;
+        }
+
+        .button button {
+            width: 40px;
+            height: 30px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin: 0 5px;
+            border: 1px solid #000;
+            transition: 0.3s;
+        }
+
+        .button button:hover {
+            background: #ababab;
+            color: #fff;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .modal-content iframe {
+            width: 100%;
+            height: auto;
+        }
+
+        .modal .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <div class="container">
+
+        <div class="slide" id="slide-container">
+            <div class="item" style="background-image: url(images/12.jpeg);">
+                <div class="content">
+                    <div class="name">Hope all your birthday wishes come true!</div>
+                    <div class="des">“Count your life by smiles, not tears. Count your age by friends, not years. Happy birthday!”</div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/5.jpeg);">
+                <div class="content">
+                    <div class="name">Enjoy your special day!</div>
+                    <div class="des">“Happy birthday! I hope all your birthday wishes and dreams come true.”</div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/69.png);">
+                <div class="content">
+                    <div class="name">The day is all yours — have fun!</div>
+                    <div class="des">“Forget the past; look forward to the future, for the best things are yet to come.”</div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/30.jpeg);">
+                <div class="content">
+                    <div class="name">Wishing you the biggest slice of happy today!</div>
+                    <div class="des">“Be happy! Today is the day you were brought into this world to be a blessing and inspiration to the people around you! You are a wonderful person! May you be given more birthdays to fulfill all of your dreams!”</div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/25.jpeg);">
+                <div class="content">
+                    <div class="name">Have the best birthday ever!</div>
+                    <div class="des">“May you be gifted with life’s biggest joys and never-ending bliss. After all, you yourself are a gift to earth, so you deserve the best. Happy birthday.”</div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/4.jpeg);">
+                <div class="content">
+                    <div class="name">Cheers to you for another trip around the sun!</div>
+                    <div class="des">“May the joy that you have spread in the past come back to you on this day. Wishing you a very happy birthday!”</div>
+                    <button class="see-more">See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="button">
+            <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </div>
+
+    <!-- Modal for video -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="youtubeVideo" width="800" height="450" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        let next = document.querySelector('.next');
+        let prev = document.querySelector('.prev');
+        let modal = document.getElementById('videoModal');
+        let close = document.querySelector('.modal .close');
+        let seeMoreButtons = document.querySelectorAll('.see-more');
+        let youtubeVideo = document.getElementById('youtubeVideo');
+
+        next.addEventListener('click', function () {
+            let items = document.querySelectorAll('.item');
+            document.querySelector('#slide-container').appendChild(items[0]);
+        });
+
+        prev.addEventListener('click', function () {
+            let items = document.querySelectorAll('.item');
+            document.querySelector('#slide-container').prepend(items[items.length - 1]);
+        });
+
+        seeMoreButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Replace 'YOUR_YOUTUBE_VIDEO_ID' with the actual YouTube video ID
+                youtubeVideo.src = 'https://www.youtube.com/embed/MRDhFaoGo7M?si=UjDumNE6JqPGbTrj';
+                modal.style.display = 'flex';
+            });
+        });
+
+        close.addEventListener('click', function () {
+            modal.style.display = 'none';
+            // Pause the video when closing the modal
+            youtubeVideo.src = '';
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                // Pause the video when closing the modal
+                youtubeVideo.src = '';
+            }
+        });
+    </script>
+</body>
+
+</html>

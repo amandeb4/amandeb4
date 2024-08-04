@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Birthday Gift - CodeMasala</title>
+    <!-- Link CSS Style.css file -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Button Style */
+        .styled-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 60px 60px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .styled-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        /* Additional Button Style */
+        button {
+            font-size: 1.4em;
+            padding: 0.6em 0.8em;
+            border-radius: 0.5em;
+            border: none;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 2px 2px 3px #000000b4;
+        }
+
+        .container {
+            position: relative;
+            padding: 3px;
+            background: linear-gradient(90deg, #03a9f4, #f441a5);
+            border-radius: 0.9em;
+            transition: all 0.4s ease;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            border-radius: 0.9em;
+            z-index: -10;
+            filter: blur(0);
+            transition: filter 0.4s ease;
+        }
+
+        .container:hover::before {
+            background: linear-gradient(90deg, #03a9f4, #f441a5);
+            filter: blur(1.2em);
+        }
+
+        .container:active::before {
+            filter: blur(0.2em);
+        }
+    </style>
+</head>
+<body>
+    <div class="moon">
+        <div class="crater1"></div>
+        <div class="crater2"></div>
+        <div class="crater3"></div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="sea"></div>
+    <div id="beach"></div>
+
+    <img src="https://dl.dropbox.com/s/2k0mtrxc2dqurmh/jumping.png" alt="Jumping-people" id="people" />
+
+    <div id="merrywrap" class="merrywrap">
+        <div class="giftbox">
+            <div class="cover">
+                <div></div>
+            </div>
+            <div class="box"></div>
+        </div>
+
+        <div class="icons">
+            <div class="row">
+                <span>H</span>
+                <span>a</span>
+                <span>p</span>
+                <span>p</span>
+                <span>y</span>
+            </div>
+            <div class="row">
+                <span>B</span>
+                <span>i</span>
+                <span>r</span>
+                <span>t</span>
+                <span>h</span>
+                <span>d</span>
+                <span>a</span>
+                <span>y</span>
+            </div>
+            <div class="row">
+                <span>M</span>
+                <span>A</span>
+                <span>N</span>
+                <span>U</span>
+                <span>R</span>
+                <span>A</span>
+                <span>M</span>
+                <span>A</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="video">
+        <button id="openSlider" class="styled-button" style="display: none;">Open Slider</button>
+    </div>
+
+    <script>
+        document.getElementById('openSlider').addEventListener('click', function () {
+            window.location.href = 'slider.html';
+        });
+
+        function reveal() {
+            document.querySelector('.merrywrap').style.backgroundColor = 'transparent';
+            loop();
+            // Make the "Open Slider" button visible
+            document.getElementById('openSlider').style.display = 'block';
+        }
+    </script>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
